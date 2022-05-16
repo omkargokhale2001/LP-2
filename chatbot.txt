@@ -1,0 +1,38 @@
+import nltk
+from nltk.chat.util import Chat,reflections
+
+reflections = {
+    "I am":"You are",
+    "I'll":"you'll",
+    "you'll":"I'll",
+    "I was":"you were",
+    "I will":"you will",
+    "me":"you",
+    "mine":"yours",
+    "yours":"mine",
+    "I'm":"you're",
+}
+
+pairs = [
+    [
+        r"Hello I'm (.*)",
+        ["Hello, %1, I'm chatty!"]
+    ],
+    [r"Who are you?",
+    ["I'm chatty and I was created by Omkar"]
+    ],
+    [
+        r"(.*) is hot",
+        ["Yes it is indeed since it is the summer season"]
+    ],
+    [
+        r"I work in (.*)",
+        ["Cool I have heard a lot of good things about %1"]
+    ]
+]
+
+def chat():
+    chat = Chat(pairs, reflections)
+    chat.converse()
+if __name__=='__main__':
+    chat()

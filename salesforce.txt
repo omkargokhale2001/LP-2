@@ -1,0 +1,48 @@
+public class BMI {
+public integer weight{get;set;}
+public integer height{get;set;}
+public integer bmi{get;set;}
+public string weight_class{get;set;}
+public integer lose{get;set;}
+    
+	public void bmi_calc(){
+       bmi = (weight*100*100)/(height*height);
+    }
+    
+    public void bmi_analysis(){
+       	bmi = (weight*100*100)/(height*height);
+        lose = (25*10000)/(height*height);
+        if(bmi<18){
+            weight_class='The weight class is:Underweight';
+        }
+        else if((18<bmi) && (bmi<25)){
+            weight_class='The weight class is:Normal';
+        }
+        else{
+            weight_class='The weight class is:Overweight';
+        }
+    }
+    
+    
+
+}
+
+
+<apex:page controller="BMI" title="BMI Calculator">
+    <apex:form >
+    	<apex:pageBlock >
+            Enter weight in Kg:<apex:inputText value="{!weight}"/><br/><br/>
+            Enter height in cm:<apex:inputText value="{!height}"/>
+            <apex:pageBlockButtons >
+            	<apex:commandButton value="CALCULATE" action="{!bmi_calc}" />
+                <apex:commandButton value="ANALYZE" action="{!bmi_analysis}" />
+            </apex:pageBlockButtons>
+            <b>
+                <br/>
+                The BMI is:<apex:outputText value="{!bmi}"></apex:outputText><br/>
+                <apex:outputText value="{!weight_class}"></apex:outputText><br/>
+                You should lose:<apex:outputText value="{!lose}"></apex:outputText> kgs.<br/>
+            </b>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
